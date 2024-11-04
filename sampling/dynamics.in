@@ -1,0 +1,50 @@
+# LAMMPS input script
+units         metal
+atom_style    full
+boundary      p p p
+
+# Read data
+read_restart  equilibration.restart
+
+reset_timestep 0
+
+# Define masses
+mass 1 15.9994   # Oxygen
+mass 2 1.008     # Hydrogen
+
+# TIP4P-2005/F
+include       tip4p-2005f.in
+
+# Variables
+variable      dt equal 0.25e-3 # ps
+variable      t_decorr equal 100e-3 # ps
+variable      n_decorr equal ${t_decorr}/${dt}
+variable      n_frames equal 3000
+variable      n_steps equal ${n_decorr}*${n_frames}
+variable      T equal 300.0 # K
+
+# Define timestep and run settings
+timestep      ${dt}
+
+# Initialize velocities for the molecule
+velocity      all create $T 5463576 mom yes rot yes dist gaussian
+
+# Thermostat
+fix           NVT all nvt temp $T $T $(100.0*dt)
+
+# Thermodynamic output
+thermo_style  custom step temp press etotal density pe ke spcpu
+thermo_modify temp NVT_temp
+thermo        1000
+
+dump          1 all custom ${n_decorr} dynamics.lammpstraj type element x y z fx fy fx
+dump_modify   1 element O H sort id
+
+print         "Running ${n_steps} steps"
+print         "Decorraltion steps: ${n_decorr}"
+run           ${n_steps}
+
+write_data    dynamics.data
+write_restart dynamics.restart
+
+# https://docs.lammps.org/Manual.html
