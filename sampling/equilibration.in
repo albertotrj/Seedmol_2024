@@ -1,0 +1,46 @@
+# LAMMPS input script
+units         metal
+atom_style    full
+boundary      p p p
+
+# Define the simulation box
+region        box block 0 10 0 10 0 10
+create_box    2 box bond/types 1 angle/types 1 extra/bond/per/atom 2 extra/angle/per/atom 1 extra/special/per/atom 2
+
+# Define masses
+mass 1 15.9994   # Oxygen
+mass 2 1.008     # Hydrogen
+
+# TIP4P-2005/F
+include       tip4p-2005f.in
+
+# Create atoms for the water molecule
+molecule      water tip4p-2005f.mol
+create_atoms  0 random 33 34564 box mol water 25367 overlap 1.33
+
+# Minimize energy
+minimize      1.0e-3 1.0e-5 100 1000
+
+variable      dt equal 0.25e-3 # ps
+variable      T  equal 300.0 # K
+
+# Define timestep and run settings
+timestep      ${dt}
+
+# Initialize velocities for the molecule
+velocity      all create $T 5463576 mom yes rot yes dist gaussian
+
+# Thermostat
+fix           NVT all nvt temp $T $T $(100.0*dt)
+
+# Thermodynamic output
+thermo_style  custom step temp press etotal density pe ke spcpu
+thermo_modify temp NVT_temp
+thermo        1000
+
+run           30000 upto
+
+write_data    equilibration_0.data
+write_restart equilibration_0.restart
+
+# https://docs.lammps.org/Manual.html
