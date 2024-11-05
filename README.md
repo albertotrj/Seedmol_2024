@@ -15,6 +15,7 @@ Abra um novo shell
 ```
 mamba create -n deepmd deepmd-kit=*=*cpu libdeepmd=*=*cpu lammps -c https://conda.deepmodeling.com
 mamba activate deepmd
+mamba install ase
 ```
 
 ## Sampling
@@ -28,4 +29,11 @@ Para rodar, execute:
 export OMP_NUM_THREADS=4
 lmp -in equilibration.in
 lmp -in dynamics.in
+```
+
+Para extrair os dados no formato apropriado para o DeepMD, execute:
+```
+./lammps_to_deepmd.py
+curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/deepmodeling/deepmd-kit/contents/data/raw/raw_to_set.sh
+
 ```
