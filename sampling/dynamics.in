@@ -37,8 +37,10 @@ thermo_style  custom step temp press etotal density pe ke spcpu
 thermo_modify temp NVT_temp
 thermo        1000
 
-dump          1 all custom ${n_decorr} dynamics.lammpstraj type element x y z fx fy fx
+# save data
+dump          1 all custom ${n_decorr} dynamics.lammpstraj type element x y z fx fy fz
 dump_modify   1 element O H sort id
+fix           3 all print ${n_decorr} "$(etotal)" file energies.dat screen no
 
 print         "Running ${n_steps} steps"
 print         "Decorraltion steps: ${n_decorr}"
