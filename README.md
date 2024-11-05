@@ -33,7 +33,9 @@ lmp -in dynamics.in
 
 Para extrair os dados no formato apropriado para o DeepMD, execute:
 ```
+chmod +x ./lammps_to_deepmd.py
 ./lammps_to_deepmd.py
 curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/deepmodeling/deepmd-kit/contents/data/raw/raw_to_set.sh
-
+chmod +x ./raw_to_set.sh
+raw_to_set.sh 2700
 ```
