@@ -10,7 +10,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 Abra um novo shell
 
-### [DeepMD](https://docs.deepmodeling.com/projects/deepmd/en/r2/install/easy-install.html#install-off-line-packages)
+### [DeepMD](https://docs.deepmodeling.com/projects/deepmd/en/r2/install/easy-install.html#install-with-conda)
 
 ```
 mamba create -n deepmd deepmd-kit=*=*cpu libdeepmd=*=*cpu lammps -c https://conda.deepmodeling.com
