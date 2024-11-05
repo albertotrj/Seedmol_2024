@@ -18,3 +18,14 @@ mamba activate deepmd
 ```
 
 ## Sampling
+
+Vamos fazer uma dinâmica de um sistema pequeno de água líquida (33 moléculas) usando o código [LAMMPS](https://docs.lammps.org/Manual.html) (Large-scale Atomic/Molecular Massively Parallel Simulator).
+
+Na pasta ```sampling``` você vai encontrar os inputs necessários.
+
+Para rodar, execute:
+```
+export OMP_NUM_THREADS=4
+lmp -in equilibration.in
+lmp -in dynamics.in
+```
