@@ -13,7 +13,7 @@ Abra um novo shell
 ### [DeepMD](https://docs.deepmodeling.com/projects/deepmd/en/r2/install/easy-install.html#install-with-conda)
 
 ```
-mamba create -n deepmd deepmd-kit=*=*cpu libdeepmd=*=*cpu lammps -c https://conda.deepmodeling.com
+mamba create -n deepmd deepmd-kit lammps horovod
 mamba activate deepmd
 mamba install ase
 ```
@@ -38,4 +38,11 @@ chmod +x ./lammps_to_deepmd.py
 curl -H 'Accept: application/vnd.github.v3.raw' -O -L https://api.github.com/repos/deepmodeling/deepmd-kit/contents/data/raw/raw_to_set.sh
 chmod +x ./raw_to_set.sh
 raw_to_set.sh 2700
+cd data/
+mkdir train test
+mv set.000 train/
+mv set.001 test/
+cp type*.raw train/
+cp type*.raw test/
+cd ..
 ```
