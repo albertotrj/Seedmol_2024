@@ -1,0 +1,7 @@
+# Ajuste para sua CPU
+export OMP_NUM_THREADS=2
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=2
+export DP_INTERFACE_PREC='low'
+
+dp train water.json
