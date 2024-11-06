@@ -67,3 +67,8 @@ Você pode plotar a convergência do treino executando
 ```
 ./plot_training.py --epoch 2700
 ```
+
+Depois que o modelo treinar, vamos congelar os parâmetros
+```
+dp freeze -o graph.pb
+```
