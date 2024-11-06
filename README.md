@@ -1,5 +1,7 @@
 # Seedmol 2024
 
+[Link para a apresentação](https://docs.google.com/presentation/d/1K3x-9s7UAjcBB7r6IbaJXbTkenVOwepxq1K8Hpv2i4E/edit?usp=drivesdk)
+
 ## Instalação
 
 ### [Miniforge](https://github.com/conda-forge/miniforge)
