@@ -46,3 +46,24 @@ cp type*.raw train/
 cp type*.raw test/
 cd ..
 ```
+
+## Training
+
+Vamos treinar uma rede neural com os dados que temos.
+
+O input para o DeepMD está no arquivo ```water.json```.
+
+Ajuste o script ```run.bsh```.
+
+```
+cd train
+chmod +x ./run.bsh
+./run.bsh
+```
+
+Abra outro shell e monitore o arquivo ```lcurve.out```.
+
+Você pode plotar a convergência do treino executando
+```
+./plot_training.py --epoch 2700
+```
