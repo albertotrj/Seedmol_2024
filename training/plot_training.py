@@ -141,7 +141,7 @@ def main():
     # make figure
     n_figs = len(data.keys()) - 1
     print(data.keys())
-    plt.style.use('seaborn-deep')
+    plt.style.use('seaborn-v0_8-deep')
     rc_params = {'font.size': 12,}
     plt.rcParams.update(rc_params)
     fig, axes = plt.subplots(n_figs, 1, figsize=(16,8), sharex=True)
