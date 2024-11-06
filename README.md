@@ -74,3 +74,7 @@ Depois que o modelo treinar, vamos congelar os parâmetros
 ```
 dp freeze -o graph.pb
 ```
+
+## Dinâmica com o potencial de redes neurais
+
+Copie os arquivos ```graph.pb``` (redes neurais do potencial treinado) e ```equilibration.restart``` (geometria inicial termalizda) para a pasta ```run``` e rode a dinâmica.
